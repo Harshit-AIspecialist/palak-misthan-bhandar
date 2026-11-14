@@ -1,3 +1,5 @@
+## DEMO - https://palak-misthan-bhandar-9bmx.vercel.app/
+
 # 🍬 Palak Mistan Bhandar — Full-Stack Enterprise Web Application
 
 > **Production-Grade Sweet & Snack Shop Web Application**  
