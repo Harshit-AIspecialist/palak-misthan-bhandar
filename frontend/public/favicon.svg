@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF6B35" />
+      <stop offset="100%" stop-color="#C62828" />
+    </linearGradient>
+  </defs>
+  <circle cx="50" cy="50" r="48" fill="url(#grad)" />
+  <!-- Traditional Indian sweet / kalash silhouette -->
+  <path d="M50 18 C58 18, 65 24, 65 32 C65 38, 60 42, 58 45 C70 48, 78 58, 78 70 C78 78, 65 82, 50 82 C35 82, 22 78, 22 70 C22 58, 30 48, 42 45 C40 42, 35 38, 35 32 C35 24, 42 18, 50 18 Z" fill="#FFC107" />
+  <circle cx="50" cy="28" r="4" fill="#FFFFFF" />
+  <path d="M42 58 Q50 68 58 58" stroke="#3E2723" stroke-width="3" fill="none" stroke-linecap="round" />
+</svg>

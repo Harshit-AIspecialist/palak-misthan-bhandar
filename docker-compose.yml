@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  # MySQL Database for Production Profile
+  mysqldb:
+    image: mysql:8.0
+    container_name: palak-mysqldb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: palakdb
+      MYSQL_USER: palakuser
+      MYSQL_PASSWORD: palakpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - palak-network
+
+  # Spring Boot Backend API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: palak-backend
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/palakdb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: palakuser
+      SPRING_DATASOURCE_PASSWORD: palakpassword
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.MySQLDialect
+    depends_on:
+      - mysqldb
+    networks:
+      - palak-network
+
+  # React Frontend (Nginx)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: palak-frontend
+    restart: always
+    ports:
+      - "80:80"
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - palak-network
+
+networks:
+  palak-network:
+    driver: bridge
+
+volumes:
+  mysql_data:
